@@ -2,9 +2,18 @@ services:
   mysql:
     image: 'mysql:latest'
     environment:
-      - 'MYSQL_DATABASE='
+      - 'MYSQL_DATABASE=personal_website_db'
       - 'MYSQL_PASSWORD=July2010'
-      - 'MYSQL_ROOT_PASSWORD=July2010'
+      - 'MYSQL_ROOT_PASSWORD=J5altdwmc'
       - 'MYSQL_USER=genej'
     ports:
-      - '3306'
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+       - db_data:/var/lib/mysql # For persistent data storage
+
+volumes:
+  db_data:
+
+
+

@@ -1,8 +1,8 @@
 package com.personalsite.wesleygene.controller;
 
-import com.ordersdemo.ordersdemo.dto.OrderRequest;
-import com.ordersdemo.ordersdemo.model.Order;
-import com.ordersdemo.ordersdemo.services.BlogService;
+import com.personalsite.wesleygene.dto.BlogRequest;
+import com.personalsite.wesleygene.model.Blog;
+import com.personalsite.wesleygene.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/")
-//@CrossOrigin(origins = "http://localhost:4200/orders") // allow angular frontend
+//@CrossOrigin(origins = "http://localhost:4200/Blogs") // allow angular frontend
 public class BlogController {
 
     @Autowired
@@ -26,19 +26,19 @@ public class BlogController {
         return "Here!";
     }
 
-    //get all Orders
-    @GetMapping("/Orders")
-    public ResponseEntity<List<Order>> getAllOrders(){
-        List<Order> Orders = BlogService.getAllOrders();
-       return (Orders != null) ? ResponseEntity.ok(Orders)
+    //get all Blogs
+    @GetMapping("/Blogs")
+    public ResponseEntity<List<Blog>> getAllBlogs(){
+        List<Blog> Blogs = BlogService.getAllBlogs();
+       return (Blogs != null) ? ResponseEntity.ok(Blogs)
                        : ResponseEntity.notFound().build();
         
     }
 
-    @GetMapping("/getOrdersByCustomerId")
-    public ResponseEntity<List<Order>> getOrdersByCustomerId(@RequestParam String customerId){
-         List<Order> Orders = BlogService.getOrdersByCustomerId(customerId);
-        return (Orders != null) ? ResponseEntity.ok(Orders)
+    @GetMapping("/getBlogsByCategory")
+    public ResponseEntity<List<Blog>> getBlogsByCategory(@RequestParam String category){
+         List<Blog> Blogs = BlogService.getBlogsByCategory(category);
+        return (Blogs != null) ? ResponseEntity.ok(Blogs)
                 : ResponseEntity.notFound().build();
     }
 
@@ -46,24 +46,23 @@ public class BlogController {
     //print out success response after
     //what happens if we call the same delete request and no record matches?
     //
-    @DeleteMapping("/delete/Order/{id}")
-    public ResponseEntity<Void> deleteOrderById(@PathVariable Long id){
-            boolean deleted = BlogService.deleteOrderById(id);
-        return deleted ? ResponseEntity.noContent().build() 
-                       : ResponseEntity.notFound().build();
+    @DeleteMapping("/delete/Blog")
+    public ResponseEntity<Blog> deleteBlogById(Long id){
+          Blog deleteBlogById = BlogService.deleteBlogById(id);
+        return ResponseEntity.ok(deleteBlogById);
     } 
 
     //but what happens if 
-    @PostMapping("/create/Order")
-    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest request){
-        Order savedOrder = BlogService.createOrder(request);
-        return ResponseEntity.ok(savedOrder);
+    @PostMapping("/create/Blog")
+    public ResponseEntity<Blog> createBlog(@RequestBody BlogRequest request){
+        Blog savedBlog = BlogService.createBlog(request);
+        return ResponseEntity.ok(savedBlog);
     }
 
     
-    @PutMapping("/update/Order/{id}")
-    public ResponseEntity<Order> updateOrder(@RequestBody OrderRequest request, @PathVariable Long id){
-        return BlogService.updateOrder(request, id)
+    @PutMapping("/update/Blog/{id}")
+    public ResponseEntity<Blog> updateBlog(@RequestBody BlogRequest request, @PathVariable Long id){
+        return BlogService.updateBlog(request, id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

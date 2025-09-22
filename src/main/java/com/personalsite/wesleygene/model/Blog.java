@@ -10,12 +10,14 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "blog_category")
+    private String blogCategory;
     @Column(name = "blog_title")
     private String blogTitle;
     @Column(name = "blog_summary")
     private String blogSummary;
     @Column(name = "blog_content")
-    private Double blogContent;
+    private String blogContent;
     @Column(name = "blog_date")
     private String blogDate;
     @Column(name = "blog_update_date")
@@ -25,39 +27,70 @@ public class Blog {
 
     }
     
-    public Blog(Integer id, String blogTitle, String blogSummary, String blogContent, String blogUpdateDate, String blogDate) {
+    public Blog(Long id, String blogCategory, String blogTitle, String blogSummary, String blogContent, String blogUpdateDate, String blogDate) {
         super();
+        this.id = id;
+        this.blogCategory = blogCategory;
         this.blogTitle = blogTitle;
-        this.blogId = blogId;
-        this.totalSaleAmount = totalSaleAmount;
+        this.blogSummary = blogSummary;
+        this.blogContent = blogContent;
+        this.blogUpdateDate = blogUpdateDate;
         this.blogDate = blogDate;
     }
-    public long getId() {
-        return id;
+
+    public String getBlogCategory() {
+        return blogCategory;
     }
-    public void setId(long id) {
-        this.id = id;
+
+    public void setBlogCategory(String blogCategory) {
+        this.blogCategory = blogCategory;
     }
-    public String getCustomerId(String blogTitle) {return blogTitle;}
-    public void setCustomerId(String blogTitle) {
+
+    public String getBlogTitle() {
+        return blogTitle;
+    }
+
+    public void setBlogTitle(String blogTitle) {
         this.blogTitle = blogTitle;
     }
-    public String getBlogId() {
-        return blogId;
+
+    public String getBlogUpdateDate() {
+        return blogUpdateDate;
     }
-    public void setBlogId(String blogId) {
-        this.blogId = blogId;
+
+    public void setBlogUpdateDate(String blogUpdateDate) {
+        this.blogUpdateDate = blogUpdateDate;
     }
-    public Double getTotalSaleAmount() {
-        return totalSaleAmount;
-    }
-    public void setTotalSaleAmount(Double totalSaleAmount) {
-        this.totalSaleAmount = totalSaleAmount;
-    }
+
     public String getBlogDate() {
         return blogDate;
     }
+
     public void setBlogDate(String blogDate) {
         this.blogDate = blogDate;
+    }
+
+    public String getBlogContent() {
+        return blogContent;
+    }
+
+    public void setBlogContent(String blogContent) {
+        this.blogContent = blogContent;
+    }
+
+    public String getBlogSummary() {
+        return blogSummary;
+    }
+
+    public void setBlogSummary(String blogSummary) {
+        this.blogSummary = blogSummary;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
