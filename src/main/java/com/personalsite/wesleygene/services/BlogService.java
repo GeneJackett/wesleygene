@@ -27,10 +27,12 @@ public class BlogService {
 
     public Blog createBlog(BlogRequest request) {
         Blog newBlog = new Blog();
-//        newBlog.setCustomerId(request.getCustomerId());
-//        newBlog.setBlogId(request.getBlogId());
-//        newBlog.setTotalSaleAmount(request.getTotalSaleAmount());
-//        newBlog.setBlogDate(request.getBlogDate());
+        newBlog.setBlogCategory(request.getCategory());
+        newBlog.setBlogTitle(request.getTitle());
+        newBlog.setBlogSummary(request.getSummary());
+        newBlog.setBlogContent(request.getContent());
+        newBlog.setBlogUpdateDate(request.getLastUpdate());
+        newBlog.setBlogDate(request.getCreateDate());
         return BlogRepository.save(newBlog);
     }
 
@@ -47,12 +49,13 @@ public class BlogService {
     }
 
     public Blog deleteBlogById(long id) {
-        return BlogRepository.deleteById(id);
+
+        return BlogRepository.deleteBlogById(id);
 
     }
 
 
     public List<Blog> getBlogsByCategory(String category) {
-        BlogRepository.get
+       return BlogRepository.getBlogsByCategory(category);
     }
 }

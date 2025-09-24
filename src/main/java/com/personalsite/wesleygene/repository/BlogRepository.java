@@ -10,6 +10,10 @@ import java.util.List;
 public interface BlogRepository extends JpaRepository<Blog, Long>{
 
     List<Blog> getBlogCategorySports(String blogCategory);
+
+    Blog deleteBlogById(long id);
+
+    List<Blog> getBlogsByCategory(String category);
 }
 
 
