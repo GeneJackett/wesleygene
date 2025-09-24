@@ -44,13 +44,13 @@ public class SecurityConfig {
 		http
 			.csrf(csrf -> csrf.disable())
 			.authorizeHttpRequests(auth -> auth
-				.requestMatchers("/api/v1/get/blog/category").hasAnyRole("Order","ADMIN")
-				.requestMatchers("/api/v1/delete/blog/comment").hasRole("ADMIN")
-				.requestMatchers("/api/v1/delete/Order/{id}").hasRole("ADMIN")
-                    .requestMatchers("/api/v1/create/Order").permitAll()
-                    .requestMatchers("/api/v1/Orders").permitAll()
-                    .requestMatchers("/api/v1/getOrdersByCustomerId").permitAll()
-				.anyRequest().authenticated()
+                .requestMatchers("/api/v1/getBlogsByCategory").permitAll()
+                .requestMatchers("/api/v1/getBlogs").permitAll()
+                .requestMatchers("/api/v1/delete/blog/comment").hasRole("ADMIN")
+                .requestMatchers("/api/v1/delete/blog").hasRole("ADMIN")
+                .requestMatchers("/api/v1/create/blog").hasRole("ADMIN")
+                .requestMatchers("/api/v1/update/blog").hasRole("ADMIN")
+                .anyRequest().authenticated()
 			);
                 //.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
@@ -72,18 +72,12 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService UserDetailsService(){
-        UserDetails user =
-                User.withUsername("USER")
-                        .password("{noop}password123")
-                        .roles("USER")
-                        .build();
-
         UserDetails admin =
                 User.withUsername("ADMIN")
                         .password("{noop}password123")
                         .roles("ADMIN")
                         .build();
-        return new InMemoryUserDetailsManager(admin, user);
+        return new InMemoryUserDetailsManager(admin);
     }
 	
 }
