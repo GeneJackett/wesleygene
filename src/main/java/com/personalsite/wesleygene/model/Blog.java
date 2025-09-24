@@ -10,80 +10,80 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "blog_category")
-    private String blogCategory;
+    @Column(name = "category")
+    private String category;
     @Column(name = "blog_title")
-    private String blogTitle;
+    private String blog_title;
     @Column(name = "blog_summary")
-    private String blogSummary;
+    private String blog_summary;
     @Column(name = "blog_content")
-    private String blogContent;
+    private String blog_content;
     @Column(name = "blog_date")
-    private String blogDate;
+    private String blog_date;
     @Column(name = "blog_update_date")
-    private String blogUpdateDate;
+    private String blog_update_date;
     
     public Blog(){
 
     }
     
-    public Blog(Long id, String blogCategory, String blogTitle, String blogSummary, String blogContent, String blogUpdateDate, String blogDate) {
+    public Blog(long id, String category, String blogTitle, String blogSummary, String blogContent, String blog_update_date, String blogDate) {
         super();
         this.id = id;
-        this.blogCategory = blogCategory;
-        this.blogTitle = blogTitle;
-        this.blogSummary = blogSummary;
-        this.blogContent = blogContent;
-        this.blogUpdateDate = blogUpdateDate;
-        this.blogDate = blogDate;
+        this.category = category;
+        this.blog_title = blogTitle;
+        this.blog_summary = blogSummary;
+        this.blog_content = blogContent;
+        this.blog_update_date = blog_update_date;
+        this.blog_date = blogDate;
     }
 
     public String getBlogCategory() {
-        return blogCategory;
+        return category;
     }
 
-    public void setBlogCategory(String blogCategory) {
-        this.blogCategory = blogCategory;
+    public void setBlogCategory(String category) {
+        this.category = category;
     }
 
     public String getBlogTitle() {
-        return blogTitle;
+        return blog_title;
     }
 
     public void setBlogTitle(String blogTitle) {
-        this.blogTitle = blogTitle;
+        this.blog_title = blogTitle;
     }
 
-    public String getBlogUpdateDate() {
-        return blogUpdateDate;
+    public String getBlog_update_date() {
+        return blog_update_date;
     }
 
-    public void setBlogUpdateDate(String blogUpdateDate) {
-        this.blogUpdateDate = blogUpdateDate;
+    public void setBlog_update_date(String blog_update_date) {
+        this.blog_update_date = blog_update_date;
     }
 
     public String getBlogDate() {
-        return blogDate;
+        return blog_date;
     }
 
     public void setBlogDate(String blogDate) {
-        this.blogDate = blogDate;
+        this.blog_date = blogDate;
     }
 
     public String getBlogContent() {
-        return blogContent;
+        return blog_content;
     }
 
     public void setBlogContent(String blogContent) {
-        this.blogContent = blogContent;
+        this.blog_content = blogContent;
     }
 
     public String getBlogSummary() {
-        return blogSummary;
+        return blog_summary;
     }
 
     public void setBlogSummary(String blogSummary) {
-        this.blogSummary = blogSummary;
+        this.blog_summary = blogSummary;
     }
 
     public long getId() {

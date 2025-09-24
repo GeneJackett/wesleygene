@@ -32,12 +32,11 @@ public class BlogController {
         List<Blog> Blogs = BlogService.getAllBlogs();
        return (Blogs != null) ? ResponseEntity.ok(Blogs)
                        : ResponseEntity.notFound().build();
-        
     }
 
     @GetMapping("/getBlogsByCategory")
-    public ResponseEntity<List<Blog>> getBlogsByCategory(@RequestParam String category){
-         List<Blog> Blogs = BlogService.getBlogsByCategory(category);
+    public ResponseEntity<List<Blog>> getBlogsByCategory(@RequestParam String blog_category){
+         List<Blog> Blogs = BlogService.getBlogsByCategory(blog_category);
         return (Blogs != null) ? ResponseEntity.ok(Blogs)
                 : ResponseEntity.notFound().build();
     }
@@ -46,21 +45,21 @@ public class BlogController {
     //print out success response after
     //what happens if we call the same delete request and no record matches?
     //
-    @DeleteMapping("/delete/Blog")
+    @DeleteMapping("/delete/blog")
     public ResponseEntity<Blog> deleteBlogById(@RequestParam Long id){
           Blog deleteBlogById = BlogService.deleteBlogById(id);
         return ResponseEntity.ok(deleteBlogById);
     } 
 
     //but what happens if 
-    @PostMapping("/create/Blog")
+    @PostMapping("/create/blog")
     public ResponseEntity<Blog> createBlog(@RequestBody BlogRequest request){
         Blog savedBlog = BlogService.createBlog(request);
         return ResponseEntity.ok(savedBlog);
     }
 
     
-    @PutMapping("/update/Blog")
+    @PutMapping("/update/blog")
     public ResponseEntity<Blog> updateBlog(@RequestBody BlogRequest request, Long id){
         return BlogService.updateBlog(request, id)
                 .map(ResponseEntity::ok)

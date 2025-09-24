@@ -9,11 +9,11 @@ import java.util.List;
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Long>{
 
-    List<Blog> getBlogCategorySports(String blogCategory);
+    //List<Blog> getBlogCategorySports(String blogCategory);
 
     Blog deleteBlogById(long id);
 
-    List<Blog> getBlogsByCategory(String category);
+    List<Blog> getBlogsByCategory(String blog_category);
 }
 
 

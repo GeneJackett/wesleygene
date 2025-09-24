@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class BlogService {
 
-    private BlogRepository BlogRepository;
+    private final BlogRepository BlogRepository;
 
 
     @Autowired
@@ -27,12 +27,12 @@ public class BlogService {
 
     public Blog createBlog(BlogRequest request) {
         Blog newBlog = new Blog();
-        newBlog.setBlogCategory(request.getCategory());
-        newBlog.setBlogTitle(request.getTitle());
-        newBlog.setBlogSummary(request.getSummary());
-        newBlog.setBlogContent(request.getContent());
-        newBlog.setBlogUpdateDate(request.getLastUpdate());
-        newBlog.setBlogDate(request.getCreateDate());
+        newBlog.setBlogCategory(request.getBlog_category());
+        newBlog.setBlogTitle(request.getBlog_title());
+        newBlog.setBlogSummary(request.getBlog_summary());
+        newBlog.setBlogContent(request.getBlog_content());
+        newBlog.setBlog_update_date(request.getBlog_last_update());
+        newBlog.setBlogDate(request.getBlog_create_date());
         return BlogRepository.save(newBlog);
     }
 
@@ -40,9 +40,8 @@ public class BlogService {
         if (BlogRepository.existsById(id)) {
             Blog existingBlog = new Blog();
             existingBlog.setId(id);
-            existingBlog.setBlogTitle(request.getTitle());
-            existingBlog.setBlogSummary(request.getSummary());
-            existingBlog.setBlogDate(request.getCreateDate());
+            existingBlog.setBlogTitle(request.getBlog_title());
+            existingBlog.setBlogSummary(request.getBlog_summary());
             return Optional.of(BlogRepository.save(existingBlog));
         }
         return Optional.empty();
@@ -54,8 +53,7 @@ public class BlogService {
 
     }
 
-
-    public List<Blog> getBlogsByCategory(String category) {
-       return BlogRepository.getBlogsByCategory(category);
+    public List<Blog> getBlogsByCategory(String blog_category) {
+       return BlogRepository.getBlogsByCategory(blog_category);
     }
 }
