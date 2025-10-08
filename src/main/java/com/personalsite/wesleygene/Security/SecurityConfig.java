@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/getBlogs").permitAll()
                 .requestMatchers("/api/v1/delete/blog/comment").hasRole("ADMIN")
                 .requestMatchers("/api/v1/delete/blog").hasRole("ADMIN")
-                .requestMatchers("/api/v1/create/blog").hasRole("ADMIN")
+                .requestMatchers("/api/v1/create/blog").permitAll()
                 .requestMatchers("/api/v1/update/blog").hasRole("ADMIN")
                 .anyRequest().authenticated()
 			);
