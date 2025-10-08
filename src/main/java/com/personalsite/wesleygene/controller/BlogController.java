@@ -35,8 +35,8 @@ public class BlogController {
     }
 
     @GetMapping("/getBlogsByCategory")
-    public ResponseEntity<List<Blog>> getBlogsByCategory(@RequestParam String blog_category){
-         List<Blog> Blogs = BlogService.getBlogsByCategory(blog_category);
+    public ResponseEntity<List<Blog>> getBlogsByCategory(@RequestParam String category){
+         List<Blog> Blogs = BlogService.getBlogsByCategory(category);
         return (Blogs != null) ? ResponseEntity.ok(Blogs)
                 : ResponseEntity.notFound().build();
     }

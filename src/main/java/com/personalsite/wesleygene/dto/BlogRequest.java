@@ -4,14 +4,15 @@ package com.personalsite.wesleygene.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.Instant;
+
 @Data
 @AllArgsConstructor
 public class BlogRequest {
-    private String blog_category;
-    private String blog_title;
-    private String blog_summary;
-    private String blog_content;
-    private String blog_last_update;
-    private String blog_create_date;
-
+    private String category;
+    private String blogTitle;
+    private String blogSummary;
+    private String blogContent;
+    private Instant blogLastUpdate;
+    private Instant blogCreateDate;
 }

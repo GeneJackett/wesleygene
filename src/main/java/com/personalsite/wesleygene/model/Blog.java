@@ -2,6 +2,11 @@ package com.personalsite.wesleygene.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.Instant;
 
 @Data
 @Entity
@@ -10,80 +15,33 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "category")
+    @Column(name = "blog_category")
     private String category;
     @Column(name = "blog_title")
-    private String blog_title;
+    private String blogTitle;
     @Column(name = "blog_summary")
-    private String blog_summary;
+    private String blogSummary;
     @Column(name = "blog_content")
-    private String blog_content;
-    @Column(name = "blog_date")
-    private String blog_date;
-    @Column(name = "blog_update_date")
-    private String blog_update_date;
-    
+    private String blogContent;
+    @UpdateTimestamp
+    @Column(name = "blog_last_update")
+    private Instant blogLastUpdate;
+    @CreationTimestamp
+    @Column(name = "blog_create_date")
+    private Instant blogCreateDate;
+
     public Blog(){
 
     }
-    
-    public Blog(long id, String category, String blogTitle, String blogSummary, String blogContent, String blog_update_date, String blogDate) {
+
+    public Blog(String category, String blogTitle, String blogSummary, String blogContent, Instant blogLastUpdate, Instant blogCreateDate) {
         super();
-        this.id = id;
         this.category = category;
-        this.blog_title = blogTitle;
-        this.blog_summary = blogSummary;
-        this.blog_content = blogContent;
-        this.blog_update_date = blog_update_date;
-        this.blog_date = blogDate;
-    }
-
-    public String getBlogCategory() {
-        return category;
-    }
-
-    public void setBlogCategory(String category) {
-        this.category = category;
-    }
-
-    public String getBlogTitle() {
-        return blog_title;
-    }
-
-    public void setBlogTitle(String blogTitle) {
-        this.blog_title = blogTitle;
-    }
-
-    public String getBlog_update_date() {
-        return blog_update_date;
-    }
-
-    public void setBlog_update_date(String blog_update_date) {
-        this.blog_update_date = blog_update_date;
-    }
-
-    public String getBlogDate() {
-        return blog_date;
-    }
-
-    public void setBlogDate(String blogDate) {
-        this.blog_date = blogDate;
-    }
-
-    public String getBlogContent() {
-        return blog_content;
-    }
-
-    public void setBlogContent(String blogContent) {
-        this.blog_content = blogContent;
-    }
-
-    public String getBlogSummary() {
-        return blog_summary;
-    }
-
-    public void setBlogSummary(String blogSummary) {
-        this.blog_summary = blogSummary;
+        this.blogTitle = blogTitle;
+        this.blogSummary = blogSummary;
+        this.blogContent = blogContent;
+        this.blogLastUpdate = blogLastUpdate;
+        this.blogCreateDate = blogCreateDate;
     }
 
     public long getId() {
@@ -92,5 +50,45 @@ public class Blog {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getBlogTitle() {
+        return blogTitle;
+    }
+
+    public void setBlogTitle(String blogTitle) {
+        this.blogTitle = blogTitle;
+    }
+
+    public String getBlogSummary() {
+        return blogSummary;
+    }
+
+    public void setBlogSummary(String blogSummary) {
+        this.blogSummary = blogSummary;
+    }
+
+    public String getBlogContent() {
+        return blogContent;
+    }
+
+    public void setBlogContent(String blogContent) {
+        this.blogContent = blogContent;
+    }
+
+    public Instant getBlogLastUpdate() {
+        return blogLastUpdate;
+    }
+
+    public Instant getBlogCreateDate() {
+        return blogCreateDate;
     }
 }
