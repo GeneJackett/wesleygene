@@ -3,6 +3,7 @@ package com.personalsite.wesleygene.controller;
 import com.personalsite.wesleygene.dto.BlogRequest;
 import com.personalsite.wesleygene.model.Blog;
 import com.personalsite.wesleygene.services.BlogService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +46,7 @@ public class BlogController {
     //print out success response after
     //what happens if we call the same delete request and no record matches?
     //
+    @Transactional
     @DeleteMapping("/delete/blog")
     public ResponseEntity<Blog> deleteBlogById(@RequestParam Long id){
           Blog deleteBlogById = BlogService.deleteBlogById(id);
@@ -60,7 +62,7 @@ public class BlogController {
 
     
     @PutMapping("/update/blog")
-    public ResponseEntity<Blog> updateBlog(@RequestBody BlogRequest request, Long id){
+    public ResponseEntity<Blog> updateBlog(@RequestBody BlogRequest request, @RequestParam Long id){
         return BlogService.updateBlog(request, id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

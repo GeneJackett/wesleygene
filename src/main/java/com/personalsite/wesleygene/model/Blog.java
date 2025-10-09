@@ -27,7 +27,7 @@ public class Blog {
     @Column(name = "blog_last_update")
     private Instant blogLastUpdate;
     @CreationTimestamp
-    @Column(name = "blog_create_date")
+    @Column(name = "blog_create_date", updatable = false)
     private Instant blogCreateDate;
 
     public Blog(){

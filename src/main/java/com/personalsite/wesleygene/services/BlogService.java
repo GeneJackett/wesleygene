@@ -38,15 +38,16 @@ public class BlogService {
         if (BlogRepository.existsById(id)) {
             Blog existingBlog = new Blog();
             existingBlog.setId(id);
+            existingBlog.setCategory(request.getCategory());
             existingBlog.setBlogTitle(request.getBlogTitle());
             existingBlog.setBlogSummary(request.getBlogSummary());
+            existingBlog.setBlogContent(request.getBlogContent());
             return Optional.of(BlogRepository.save(existingBlog));
         }
         return Optional.empty();
     }
 
     public Blog deleteBlogById(long id) {
-
         return BlogRepository.deleteBlogById(id);
 
     }
